@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 pub mod input;
 pub mod output;
 
@@ -14,11 +16,11 @@ const NOTE_OFF_STATUS: u8 = 0b1000_0000;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct MidiMessage {
-    pub msg: [u8; 3],
+    pub msg: Arc<[u8]>,
 }
 
-impl From<[u8; 3]> for MidiMessage {
-    fn from(msg: [u8; 3]) -> Self {
+impl From<Arc<[u8]>> for MidiMessage {
+    fn from(msg: Arc<[u8]>) -> Self {
         MidiMessage { msg }
     }
 }

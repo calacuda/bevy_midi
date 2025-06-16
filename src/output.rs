@@ -215,7 +215,7 @@ impl Future for MidiOutputTask {
                 .unwrap();
         }
 
-        if let Ok(msg) = self.receiver.recv() {
+        if let Ok(msg) = self.receiver.try_recv() {
             use Message::{ConnectToPort, DisconnectFromPort, Midi, RefreshPorts};
 
             match msg {
